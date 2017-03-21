@@ -28,7 +28,6 @@ class App extends EventEmitter {
     this.initialized = true;
 
     let tokenStore = null;
-    let userService = null;
     let sessionStore = new SessionStore();
 
     if (!options.endpoints) {
@@ -41,15 +40,7 @@ class App extends EventEmitter {
 
     let baseUri = options.endpoints.baseUri;
 
-    if (baseUri && !utils.isSameHost(baseUri, window.location.href)) {
-      tokenStore = new TokenStore(options.storage, 'stormpath:token');
-      userService = new ClientApiUserService(options.endpoints);
-
-      userService.setToken('access_token', tokenStore.get('access_token'));
-      userService.setToken('refresh_token', tokenStore.get('refresh_token'));
-    } else {
-      userService = new UserService(options.endpoints);
-    }
+    let userService = new UserService(options.endpoints);
 
     let userStore = new UserStore(userService, sessionStore);
 

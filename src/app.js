@@ -28,7 +28,6 @@ class App extends EventEmitter {
     this.initialized = true;
 
     let tokenStore = null;
-    let userService = null;
     let sessionStore = new SessionStore();
 
     if (!options.endpoints) {
@@ -40,7 +39,6 @@ class App extends EventEmitter {
     }
 
     let baseUri = options.endpoints.baseUri;
-
 
     let userService = new UserService(options.endpoints);
 

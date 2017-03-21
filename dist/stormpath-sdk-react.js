@@ -263,7 +263,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	      this.initialized = true;
 
 	      var tokenStore = null;
-	      var userService = null;
 	      var sessionStore = new _stores.SessionStore();
 
 	      if (!options.endpoints) {
@@ -276,15 +275,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      var baseUri = options.endpoints.baseUri;
 
-	      if (baseUri && !_utils2.default.isSameHost(baseUri, window.location.href)) {
-	        tokenStore = new _stores.TokenStore(options.storage, 'stormpath:token');
-	        userService = new _services.ClientApiUserService(options.endpoints);
-
-	        userService.setToken('access_token', tokenStore.get('access_token'));
-	        userService.setToken('refresh_token', tokenStore.get('refresh_token'));
-	      } else {
-	        userService = new _services.UserService(options.endpoints);
-	      }
+	      var userService = new _services.UserService(options.endpoints);
 
 	      var userStore = new _stores.UserStore(userService, sessionStore);
 
@@ -939,7 +930,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	      // Only set the X-Stormpath-Agent header if we're on the same domain as the requested URI.
 	      // This because we want to avoid CORS requests that require you to have to whitelist the X-Stormpath-Agent header.
 	      if (this.forceAgentHeader || _utils2.default.isRelativeUri(uri) || _utils2.default.isSameHost(uri, window.location.href)) {
-	        headers['X-Stormpath-Agent'] = 'stormpath-sdk-react/' + ("2.0.1") + ' react/' + _react2.default.version;
+	        headers['X-Stormpath-Agent'] = 'stormpath-sdk-react/' + ("3.0.0") + ' react/' + _react2.default.version;
 	      }
 
 	      makeHttpRequest(method, uri, body, headers, function (err, result) {

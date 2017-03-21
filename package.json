@@ -11,7 +11,7 @@
     "umd",
     "dist"
   ],
-  "main": "dist/index",
+  "main": "lib/index",
   "jsnext:main": "es6/index",
   "repository": {
     "type": "git",

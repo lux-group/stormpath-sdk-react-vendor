@@ -150,6 +150,7 @@ export default class LoginForm extends React.Component {
     fields: {
       username: '',
       password: '',
+      brand: 'scooponexperience'
     },
     errorMessage: null,
     isFormProcessing: false
@@ -188,7 +189,8 @@ export default class LoginForm extends React.Component {
 
       UserActions.login({
         login: data.username,
-        password: data.password
+        password: data.password,
+        brand: data.brand
       }, (err, result) => {
         if (err) {
           if (onSubmitError) {
